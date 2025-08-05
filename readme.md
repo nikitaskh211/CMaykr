@@ -17,8 +17,10 @@ After the configuration file is created you only have to write `cmaykr [flag] [w
 
 I guess it works as any other similar build system. In case you are unfamiliar with how common build systems work here is a quick rundown of how things work 'under the hood'. A compiler for C has this usage: `[compiler] [flags] [source files] -o [executable name]`. Instead of compiling into an executable we can modify the process a bit:
 - We know what source files we have to compile we just have to recieve time of their latest modification.
-- Based on the time of latest modification we compile object files for them using: `[compiler] -c [flags] [source files] -o [object files]`
-- After the object files are compiled we link every object into an executable using: `[compiler] [object files] -o [executable]`
+- Based on the time of latest modification we compile object files for them using:
+`[compiler] -c [flags] [source files] -o [object files]`
+- After the object files are compiled we link every object into an executable using:
+`[compiler] [object files] -o [executable]`
 
 We will also add a feature to log history of changes between files.
 
