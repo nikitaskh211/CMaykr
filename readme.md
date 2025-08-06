@@ -23,3 +23,10 @@ I guess it works as any other similar build system. In case you are unfamiliar w
 We will also add a feature to log history of changes between files.
 
 All the source code must be self-explanatory so there must be no confusion.
+
+## What's the roadmap ?
+
+Development of this project takes time and some elements are unfinished so it makes sense to generate a roadmap for everyone to see:
+- [x] Working CLI.
+- [ ] Making the projects.
+- [ ] Building the projects
