@@ -15,6 +15,9 @@
 /// Maximum amount of projects that can be made and build.
 #define MAX_PROJECTS 128
 
+/// Srting length for a path to config.maykr
+#define CONFIG_PATH_LENGTH 512
+
 int main(int argc, char *argv[]) {
   /// Main variables
   int flag_help = 0, flag_version = 0, flag_debug = 0, flag_release = 0;
@@ -83,8 +86,21 @@ int main(int argc, char *argv[]) {
     fprintf(stdout, "[INF] Producing debug build. -> TODO!\n");
   if (flag_release)
     fprintf(stdout, "[INF] Producing release build. -> TODO!\n");
-  /// Making the projects
+  /// Making the projects (parser to config.cmaykr file)
+  for (char **config_pointer = projects; config_pointer < project;
+       config_pointer++) {
+    char config_path[CONFIG_PATH_LENGTH];
+    snprintf(config_path, sizeof(config_path), "%s/config.maykr",
+             *config_pointer);
+    FILE *config_file = fopen(config_path, "r");
+    if (!config_file) {
+      fprintf(stderr, "[ERR] Could not open config file: %s\n", config_path);
+      continue; // We will skip a project that does not have a configuration file
+    }
+    fprintf(stdout, "[INF] Parsing config: %s\n", config_path);
 
+    fclose(config_file);
+  }
   /// Correct cleanup
   for (char **cleanup = projects; cleanup < project; cleanup++) {
     free(*cleanup);
