@@ -10,7 +10,7 @@ This program is written within one .c source file which is compatible with any c
 
 ## How to use it ?
 
-In order to create a project you must create a configuration text file `config.cm`. In order to make this step easier for everyone this project will feature extensive documentation on the matter of configuration.
+In order to create a project you must create a configuration text file `config.cmaykr`. In order to make this step easier for everyone this project will feature extensive documentation on the matter of configuration.
 After the configuration file is created you only have to write `cmaykr [flag] [working directory]` command in order to build everything within working directory.
 
 ## How it works ?

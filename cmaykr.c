@@ -83,6 +83,8 @@ int main(int argc, char *argv[]) {
     fprintf(stdout, "[INF] Producing debug build. -> TODO!\n");
   if (flag_release)
     fprintf(stdout, "[INF] Producing release build. -> TODO!\n");
+  /// Making the projects
+
   /// Correct cleanup
   for (char **cleanup = projects; cleanup < project; cleanup++) {
     free(*cleanup);

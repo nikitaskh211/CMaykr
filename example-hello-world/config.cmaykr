@@ -1,0 +1,3 @@
+compiler: clang
+flags: -Wall, -Wextra
+source: hello.c, main.c
