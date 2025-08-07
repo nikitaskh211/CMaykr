@@ -18,9 +18,14 @@
 #define VERSION_MINOR 1
 #define VERSION_PATCH 1
 
-int make_project();
-int build_debug();
-int build_release();
+/// Integer constant for maximum directories
+#define DIRECTORIES_MAX 128
+
+/// This function is responsible for parsing the config.cmaykr file
+int make_project(int dirc, char *dirv[]);
+
+/// This function is responsible for building a project
+int build_project(int dirc, char *dirv[]);
 
 int main(int argc, char *argv[]) {
   // Skipping the first argument, which is the name of the program
@@ -36,8 +41,8 @@ int main(int argc, char *argv[]) {
     f_err = 1;
   }
   // Variables for directories
-  int dirc = 64;
-  char *dirv[64];
+  int dirc = 0;
+  char *dirv[DIRECTORIES_MAX];
   // Parsing arguments
   while (argc > 0) {
     if ((*argv)[0] == '-') {
@@ -58,6 +63,15 @@ int main(int argc, char *argv[]) {
         f_err = 1;
       }
     } else {
+      if (dirc > 128) {
+        fprintf(stderr, "[ERR] Too many project directories.");
+        fprintf(stderr, " (maximum is %d).\n", DIRECTORIES_MAX);
+        f_err = 1;
+      } else {
+        dirv[dirc] = *argv;
+        fprintf(stdout, "[INF] Project directory #%d: %s\n", dirc, *dirv);
+        dirc++;
+      }
     }
     // Going through each argument
     argv++;
@@ -79,7 +93,5 @@ int main(int argc, char *argv[]) {
   }
   if (f_release) {
   }
-  if (f_err)
-    return EXIT_FAILURE;
-  return EXIT_SUCCESS;
+  return f_err ? EXIT_FAILURE : EXIT_SUCCESS;
 }
